@@ -1,0 +1,21 @@
+name: destroy-runner
+
+on:
+  workflow_dispatch:
+
+jobs:
+  destroy-runner:
+    runs-on: self-hosted
+
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: setup terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: terraform init
+        run: terraform init
+
+      - name: terraform destroy
+        run: terraform destroy -auto-approve
